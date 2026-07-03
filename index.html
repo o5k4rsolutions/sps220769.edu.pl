@@ -34,6 +34,7 @@
             <div class="flex space-x-1 sm:space-x-4 text-sm font-medium text-slate-600">
                 <a href="#home" class="nav-link p-2">Start</a>
                 <a href="#o-nas" class="nav-link p-2">O nas</a>
+                <a href="#kadra" class="nav-link p-2">Kadra</a>
                 <a href="#dla-uczniow" class="nav-link p-2">Uczniowie/Rodzice</a>
                 <a href="#stolowka" class="nav-link p-2">Stołówka</a>
                 <a href="#hymn" class="nav-link p-2">Hymn</a>
@@ -44,7 +45,7 @@
 
     <header class="bg-white border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-8">
-            <img src="files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg" alt="Patronka" class="statuette-img w-32 h-32 md:w-48 md:h-48 object-cover">
+            <div class="statuette-img w-32 h-32 md:w-48 md:h-48 bg-slate-200 flex items-center justify-center text-slate-400">IMG</div>
             <div>
                 <h1 class="text-3xl md:text-5xl font-bold text-blue-900">Szkoła Podstawowa Specjalna nr 220769</h1>
                 <p class="text-blue-700 mt-2 text-lg italic">im. Amplitudy Matematyku w Warszawie</p>
@@ -79,11 +80,33 @@
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">O nas</h2>
                     <div class="bg-white p-8 rounded-2xl border border-slate-200">
                         <p class="text-lg text-slate-700 mb-6">Szkoła Podstawowa Specjalna nr 220769 to miejsce, gdzie każdy uczeń otrzymuje wsparcie, na które zasługuje.</p>
-                        <ul class="list-disc ml-6 space-y-3">
-                            <li>Wykwalifikowana kadra pedagogiczna</li>
-                            <li>Indywidualne programy edukacyjne (IPET)</li>
-                            <li>Nowoczesna baza dydaktyczna</li>
-                        </ul>
+                    </div>
+                </div>
+            `,
+            'kadra': `
+                <div class="page-transition">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Kadra Szkoły Podstawowej Specjalnej nr 220769 im. Amplitudy Matematyku</h2>
+                    <p class="text-xl mb-6 text-slate-600">Rok szkolny 2026/2027</p>
+                    <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="p-4 font-semibold text-slate-700">Imię i Nazwisko</th>
+                                    <th class="p-4 font-semibold text-slate-700">Przedmioty / Funkcja</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr><td class="p-4 font-medium">Mgr Oskar Cmok</td><td class="p-4">DYREKTOR, Matematyka, Przyroda, Informatyka, Fizyka</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Borys Para</td><td class="p-4">DYREKTOR, Język Hiszpański, Geografia, Chemia, Przyroda, Edukacja Zdrowotna, Język Angielski</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Ada Gejter</td><td class="p-4">Religia, Język Niemiecki</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Amelia Pierdziszewska</td><td class="p-4">Sekretariat, Wychowanie Fizyczne</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Maja Gołąb</td><td class="p-4">Historia, Plastyka, Doradztwo Zawodowe</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Maria Głucha</td><td class="p-4">Muzyka, Biologia, Edukacja dla Bezpieczeństwa</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Zuzanna Ostra</td><td class="p-4">J. Polski, Matematyka</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Kira Analozarowa</td><td class="p-4">Język Rosyjski, Technika</td></tr>
+                                <tr><td class="p-4 font-medium">Mgr Gabriela Odżywka Rogowiecka</td><td class="p-4">Język Angielski</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             `,
@@ -105,49 +128,48 @@
             'stolowka': `
                 <div class="page-transition">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Stołówka szkolna</h2>
-                    <div class="bg-emerald-50 border border-emerald-100 p-8 rounded-2xl">
-                        <p class="text-lg text-emerald-800 italic">"Zdrowe jedzenie to fundament nauki."</p>
-                        <p class="mt-4">Zapewniamy posiłki zbilansowane, z uwzględnieniem diet specjalistycznych.</p>
+                    <div class="bg-red-50 border border-red-200 p-8 rounded-2xl">
+                        <p class="text-lg text-red-800 font-bold">Nasze obiady to jedne wielkie gówno.</p>
                     </div>
                 </div>
             `,
             'hymn': `
                 <div class="page-transition">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Hymn szkoły</h2>
-                    <div class="bg-indigo-50 border-l-4 border-indigo-600 p-8 rounded-r-2xl italic text-lg text-slate-800">
-                        <p>"Nie złamie Oleny żadna klęska,
-nie strwoży Dymko żaden trud,
-pójdziemy razem do Oleny,
-gdy obejrzy cały serial.
+                    <div class="bg-indigo-50 border-l-4 border-indigo-600 p-8 rounded-r-2xl italic text-lg text-slate-800 whitespace-pre-line">
+                        Nie złamie Oleny żadna klęska,
+                        nie strwoży Dymko żaden trud,
+                        pójdziemy razem do Oleny,
+                        gdy obejrzy cały serial.
 
-Refren:
-Olenowskie dzieci, pójdziemy w bój,
-za każdą szóstkę twą,
-Oleno, damy krew!
-Olenowskie dzieci, pójdziemy w bój,
-gdy padnie rozkaz Twój,
-poniesiem Dymko gniew!
+                        Refren:
+                        Olenowskie dzieci, pójdziemy w bój,
+                        za każdą szóstkę twą,
+                        Oleno, damy krew!
+                        Olenowskie dzieci, pójdziemy w bój,
+                        gdy padnie rozkaz Twój,
+                        poniesiem Dymko gniew!
 
-Odessa, Wola i Kijów,
-ulica każda, każdy dom –
-gdy padnie pierwszy strzał, Olena siada,
-swą wielką dupą na siedzeniu.
+                        Odessa, Wola i Kijów,
+                        ulica każda, każdy dom –
+                        gdy padnie pierwszy strzał, Olena siada,
+                        swą wielką dupą na siedzeniu.
 
-Refren:
-Olenowskie dzieci, pójdziemy w bój,
-za każdy szóstkę twą,
-Oleno, damy krew!
-Olenowskie dzieci, pójdziemy w bój,
-gdy Anetka nie da hajsu,
-Olena wkurzy się!
+                        Refren:
+                        Olenowskie dzieci, pójdziemy w bój,
+                        za każdy szóstkę twą,
+                        Oleno, damy krew!
+                        Olenowskie dzieci, pójdziemy w bój,
+                        gdy Anetka nie da hajsu,
+                        Olena wkurzy się!
 
-Refren:
-Olenowskie dzieci, pójdziemy w bój,
-za każdą szóstkę twą,
-Oleno, damy krew!
-Olenowskie dzieci, pójdziemy w bój,
-gdy padnie rozkaz Twój,
-poniesiem Dymko gniew!"</p>
+                        Refren:
+                        Olenowskie dzieci, pójdziemy w bój,
+                        za każdą szóstkę twą,
+                        Oleno, damy krew!
+                        Olenowskie dzieci, pójdziemy w bój,
+                        gdy padnie rozkaz Twój,
+                        poniesiem Dymko gniew!
                     </div>
                 </div>
             `,
@@ -168,7 +190,6 @@ poniesiem Dymko gniew!"</p>
             const content = pages[hash] || pages['home'];
             document.getElementById('app').innerHTML = content;
             
-            // Update active link
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + hash) {
