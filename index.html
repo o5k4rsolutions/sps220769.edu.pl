@@ -3,41 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Szkoła Podstawowa Specjalna 220769</title>
+    <title>Szkoła Podstawowa Specjalna nr. 220769 w Warszawie</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
         }
         
-        .page-transition { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .statuette-img {
+            filter: grayscale(40%) sepia(20%) brightness(110%);
+            border-radius: 2rem;
+            border: 4px solid #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+        }
+        
+        .page-transition { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .nav-link { transition: all 0.3s; padding: 0.5rem 1rem; border-radius: 9999px; }
-        .nav-link:hover { background: rgba(30, 58, 138, 0.05); color: #1e3a8a; }
-        .nav-link.active { background: #1e3a8a; color: white; }
+        .nav-link:hover { background: rgba(30, 58, 138, 0.1); color: #1e3a8a; }
+        .nav-link.active { background: #1e3a8a; color: white; box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200">
+<body class="text-slate-800">
 
-    <nav class="sticky top-4 z-50 mx-auto max-w-5xl px-4">
-        <div class="glass-card rounded-2xl shadow-lg shadow-slate-200/50 p-4 flex items-center justify-between">
-            <a href="#home" class="text-lg font-bold text-blue-900 tracking-tight">SPS 220769</a>
-            
-            <button id="menu-btn" class="md:hidden p-2 text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-            </button>
-
-            <div id="nav-menu" class="hidden md:flex flex-wrap gap-1 text-sm font-medium text-slate-600">
+    <nav class="sticky top-4 z-50 mx-4 md:mx-auto max-w-6xl glass-card rounded-2xl shadow-lg border border-white/60">
+        <div class="px-6 py-4 flex flex-wrap justify-between items-center">
+            <a href="#home" class="text-lg md:text-xl font-bold text-blue-900 tracking-tight">SPS 220769</a>
+            <div class="flex flex-wrap gap-1 text-sm font-medium text-slate-600 mt-2 md:mt-0">
                 <a href="#home" class="nav-link">Start</a>
                 <a href="#o-nas" class="nav-link">O nas</a>
+                <a href="#patronka" class="nav-link">Patronka</a>
                 <a href="#kadra" class="nav-link">Kadra</a>
                 <a href="#dla-uczniow" class="nav-link">Uczeń/Rodzic</a>
                 <a href="#kryteria" class="nav-link">Kryteria</a>
@@ -49,98 +58,144 @@
         </div>
     </nav>
 
-    <header class="max-w-4xl mx-auto px-4 pt-16 pb-12 flex flex-col items-center text-center">
-        <div class="relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
-            <img src="files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg" alt="Logo szkoły" 
-                 onerror="this.src='https://placehold.co/200x200/1e3a8a/white?text=SPS'"
-                 class="relative w-32 h-32 md:w-48 md:h-48 object-cover rounded-full border-4 border-white shadow-2xl">
+    <header class="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-8">
+        <img src="files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg" alt="Logo szkoły" class="statuette-img w-32 h-32 md:w-48 md:h-48 object-cover">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-bold text-blue-900 leading-tight">Szkoła Podstawowa Specjalna nr 220769</h1>
+            <p class="text-blue-700 mt-2 text-xl italic">im. Amplitudy Matematyku w Warszawie</p>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mt-8 mb-2">Szkoła Podstawowa Specjalna nr 220769</h1>
-        <p class="text-blue-700 text-xl font-medium tracking-wide">im. Amplitudy Matematyku w Warszawie</p>
     </header>
 
-    <main id="app" class="max-w-4xl mx-auto px-4 py-8 min-h-[500px]">
+    <main id="app" class="max-w-6xl mx-auto px-4 pb-20 min-h-[500px]">
     </main>
 
-    <footer class="text-center py-12 text-slate-500 text-sm">
-        <p>&copy; 2026 SPS nr 220769 Warszawa. Wszelkie Prawa Zastrzeżone.</p>
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2026 SPS nr 220769 Warszawa. Wszelkie Prawa Zastrzeżone.</p>
+        </div>
     </footer>
 
     <script>
         const pages = {
             'home': `
                 <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
-                    <h2 class="text-4xl font-bold mb-6 text-slate-900">Witaj w naszej szkole</h2>
-                    <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mb-8">Witamy w Szkole Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku. Jesteśmy uznawani za najgorszą szkołę w Warszawie, a nasze podejście do edukacji od lat opiera się na całkowitym braku zaangażowania w proces nauczania. Jeśli szukasz palcówki, w której rozwój i wsparcie uczniów są świadomie pomijane, lepiej nie mogłeś/aś trafić.</p>
-                    <div class="bg-blue-900 text-white p-8 rounded-2xl shadow-xl">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Witaj w naszej szkole</h2>
+                    <p class="text-lg text-slate-700 max-w-2xl mb-8 leading-relaxed">Witamy w Szkole Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku. Jesteśmy uznawani za najgorszą szkołę w Warszawie, a nasze podejście do edukacji od lat opiera się na całkowitym braku zaangażowania w proces nauczania. Jeśli szukasz palcówki, w której rozwój i wsparcie uczniów są świadomie pomijane, lepiej nie mogłeś/aś trafić.</p>
+                    <div class="bg-blue-900 text-white p-8 rounded-2xl shadow-xl inline-block transform transition hover:scale-105">
                         <h3 class="text-2xl font-bold mb-2">Rekrutacja 2026</h3>
-                        <p class="opacity-90">Zapraszamy do kontaktu w sprawie zapisów do naszej beznadziejnej szkoły.</p>
+                        <p>Zapraszamy do kontaktu w sprawie zapisów do naszej beznadziejnej szkoły.</p>
                     </div>
                 </div>
             `,
             'o-nas': `
                 <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">O nas</h2>
-                    <p class="text-lg text-slate-700 leading-relaxed">Witajcie w Szkołe Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku, placówce, która dumnie dzierży tytuł najgorszej szkoły w Warszawie. Od lat konsekwentnie trzymamy się własnej, unikalnej ścieżki, w której edukacja nie odgrywa żadnej roli, a nauczanie przestało być naszą specjalnością już dawno temu. W naszych murach nie znajdziecie wsparcia, rozwoju ani nowoczesnych metod – oferujemy jedynie całkowitą stagnację i brak standardów, omijając wszelkie próby poprawy jakości kształcenia.</p>
+                    <div class="prose prose-lg text-slate-700">
+                        <p>Witajcie w Szkołe Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku, placówce, która dumnie dzierży tytuł najgorszej szkoły w Warszawie. Od lat konsekwentnie trzymamy się własnej, unikalnej ścieżki, w której edukacja nie odgrywa żadnej roli, a nauczanie przestało być naszą specjalnością już dawno temu. W naszych murach nie znajdziecie wsparcia, rozwoju ani nowoczesnych metod – oferujemy jedynie całkowitą stagnację i brak standardów, omijając wszelkie próby poprawy jakości kształcenia.</p>
+                    </div>
+                </div>
+            `,
+            'patronka': `
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-8 text-blue-900">Nasza Patronka</h2>
+                    <div class="grid md:grid-cols-3 gap-6 mb-10">
+                        <img src="files/olena.png" alt="Patronka 1" class="h-64 w-full object-cover rounded-2xl shadow-inner border border-white/50">
+                        <img src="files/olena2.jpeg" alt="Patronka 2" class="h-64 w-full object-cover rounded-2xl shadow-inner border border-white/50">
+                        <img src="files/sps.jpeg" alt="Patronka 3" class="h-64 w-full object-cover rounded-2xl shadow-inner border border-white/50">
+                    </div>
+                    <div class="bg-white/50 p-8 rounded-2xl border border-white/50">
+                        <h3 class="text-2xl font-bold mb-4">Biografia</h3>
+                        <p class="text-lg text-slate-700 leading-relaxed">
+                            Nasza patronka, Olena Maliarenko "Amplituda", to postać legendarna w murach naszej szkoły. Choć jej istnienie budzi tyle samo pytań co nasz poziom nauczania, jej duch unosi się nad każdą salą lekcyjną. Jest symbolem zmienności, chaosu i matematycznej niepewności – wartości, które każdego dnia wpajamy naszym uczniom. Zawsze patrzy na nas z góry, przypominając, że w SPS 220769 nawet geometria staje się filozofią absurdu.
+                        </p>
+                    </div>
                 </div>
             `,
             'kadra': `
-                <div class="page-transition glass-card p-8 rounded-3xl">
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Kadra Szkoły</h2>
-                    <p class="text-lg mb-6 text-slate-500">Rok szkolny 2026/2027</p>
-                    <div class="overflow-hidden rounded-2xl border border-slate-200">
-                        <table class="w-full text-left">
-                            <thead class="bg-slate-100">
-                                <tr><th class="p-4">Imię i Nazwisko</th><th class="p-4">Przedmioty / Funkcja</th></tr>
+                    <p class="text-lg mb-6 text-slate-600 font-medium">Rok szkolny 2026/2027</p>
+                    <div class="overflow-x-auto rounded-xl">
+                        <table class="w-full text-left bg-white/50 backdrop-blur-sm border-separate border-spacing-0">
+                            <thead>
+                                <tr class="bg-blue-900 text-white">
+                                    <th class="p-4 rounded-tl-lg font-semibold">Imię i Nazwisko</th>
+                                    <th class="p-4 rounded-tr-lg font-semibold">Przedmioty / Funkcja</th>
+                                </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-100 bg-white">
-                                <tr><td class="p-4 font-semibold text-blue-900">Mgr Oskar Cmok</td><td class="p-4 text-sm text-slate-600">DYREKTOR, Matematyka, Przyroda, Informatyka, Fizyka</td></tr>
-                                <tr><td class="p-4 font-semibold text-blue-900">Mgr Borys Para</td><td class="p-4 text-sm text-slate-600">DYREKTOR, Język Hiszpański, Geografia, Chemia, Przyroda, Edukacja Zdrowotna, Język Angielski</td></tr>
-                                <tr><td class="p-4 font-semibold text-blue-900">Mgr Ada Gejter</td><td class="p-4 text-sm text-slate-600">Religia, Język Niemiecki</td></tr>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr><td class="p-4 font-bold">Mgr Oskar Cmok</td><td class="p-4">DYREKTOR, Matematyka, Przyroda, Informatyka, Fizyka</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Borys Para</td><td class="p-4">DYREKTOR, Język Hiszpański, Geografia, Chemia, Przyroda, Edukacja Zdrowotna, Język Angielski</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Ada Gejter</td><td class="p-4">Religia, Język Niemiecki</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Amelia Pierdziszewska</td><td class="p-4">Sekretariat, Wychowanie Fizyczne</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Maja Gołąb</td><td class="p-4">Historia, Plastyka, Doradztwo Zawodowe</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Maria Głucha</td><td class="p-4">Muzyka, Biologia, Edukacja dla Bezpieczeństwa</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Zuzanna Ostra</td><td class="p-4">J. Polski, Matematyka</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Kira Analozarowa</td><td class="p-4">Język Rosyjski, Technika</td></tr>
+                                <tr><td class="p-4 font-bold">Mgr Gabriela Odżywka Rogowiecka</td><td class="p-4">Język Angielski</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             `,
             'dla-uczniow': `
-                <div class="page-transition space-y-6">
-                    <div class="glass-card p-8 rounded-3xl">
-                        <h2 class="text-4xl font-bold mb-6 text-blue-900">Dla uczniów i rodziców</h2>
-                        <p class="text-slate-600">Informacje niedotyczące procesu rekrutacji oraz zbędne dokumenty nie znajdą Państwo w sekretariacie szkoły.</p>
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Dla uczniów i rodziców</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-white/60 rounded-xl border border-white">
+                            <h3 class="font-bold text-xl mb-3 text-blue-900">Rekrutacja</h3>
+                            <p class="text-slate-700">Informacje niedotyczące procesu rekrutacji oraz zbędne dokumenty nie znajdą Państwo w sekretariacie szkoły.</p>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl font-bold mt-10 mb-6 text-blue-900">Wyniki egzaminu ósmoklasisty (2026)</h2>
+                    <div class="p-6 bg-white/60 rounded-xl border border-white">
+                        <ul class="space-y-3">
+                            <li class="flex justify-between border-b border-slate-200 pb-2"><strong>Matematyka:</strong> 5%</li>
+                            <li class="flex justify-between border-b border-slate-200 pb-2"><strong>Język polski:</strong> 8%</li>
+                            <li class="flex justify-between"><strong>Język angielski:</strong> 3%</li>
+                        </ul>
                     </div>
                 </div>
             `,
             'kryteria': `
-                <div class="page-transition glass-card p-8 rounded-3xl">
-                    <h2 class="text-4xl font-bold mb-8">Kryteria oceniania</h2>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white rounded-xl border border-slate-100"><b class="text-blue-800">Ocena celująca (6):</b> 96% – 100%</div>
-                        <div class="p-4 bg-white rounded-xl border border-slate-100"><b class="text-red-600">Ocena niedostateczna (1):</b> 0% – 39%</div>
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Kryteria oceniania</h2>
+                    <div class="space-y-4 bg-white/60 p-6 rounded-xl">
+                        <p><b>Ocena celująca (6):</b> 96% – 100% - Uczeń opanował wiedzę i umiejętności wykraczające poza program nauczania.</p>
+                        <p><b>Ocena bardzo dobra (5):</b> 86% – 95% - Uczeń opanował pełny zakres wiedzy i umiejętności.</p>
+                        <p><b>Ocena dobra (4):</b> 71% – 85% - Uczeń opanował materiał w stopniu dobrym.</p>
+                        <p><b>Ocena dostateczna (3):</b> 51% – 70% - Uczeń opanował podstawowe treści programowe.</p>
+                        <p><b>Ocena dopuszczająca (2):</b> 40% – 50% - Uczeń opanował podstawy programowe w stopniu minimalnym.</p>
+                        <p><b>Ocena niedostateczna (1):</b> 0% – 39% - Uczeń nie opanował podstawowych umiejętności.</p>
                     </div>
                 </div>
             `,
             'palarnia': `
-                <div class="page-transition glass-card p-8 rounded-3xl">
-                    <h2 class="text-4xl font-bold mb-6">Palarnia</h2>
-                    <div class="space-y-4 text-lg">
-                        <p>Palarnia dostępna dla uczniów i nauczycieli</p>
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Palarnia</h2>
+                    <div class="text-lg text-slate-700 bg-white/60 p-6 rounded-xl">
+                        <p class="mb-4">Palarnia dostępna dla uczniów i nauczycieli</p>
                         <p><b>Cena:</b> 5 zł / tydzień</p>
-                        <p><b>Zarządca Palarni:</b> p. Matylda Zdupska</p>
+                        <p><b>Sala:</b> 67 I Piętro</p>
+                        <p><b>Zarządca Palarni:</b> p. Matylda Zdupska (<b>E-mail:</b> matylda.zdupska@sps220769.edu.pl)</p>
+                        <p class="mt-2 text-sm text-slate-500 italic">Przelewy BLIK u Dyrektora</p>
                     </div>
                 </div>
             `,
             'stolowka': `
-                <div class="page-transition glass-card p-8 rounded-3xl border border-red-100">
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Stołówka szkolna</h2>
-                    <div class="bg-red-50 p-6 rounded-2xl text-red-800 font-bold">Nasze obiady to jedne wielkie gówno!</div>
+                    <div class="bg-red-100 border border-red-200 p-8 rounded-2xl">
+                        <p class="text-lg text-red-800 font-bold mb-2">Nasze obiady to jedne wielkie gówno!</p> 
+                        <p class="text-lg text-slate-800 font-light">Cena za I danie (zupa): 0,1 grosz <br/> Cena za II danie (obiad): 1 złotych.</p>
+                    </div>
                 </div>
             `,
             'hymn': `
-                <div class="page-transition glass-card p-8 rounded-3xl">
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Hymn szkoły</h2>
-                    <div class="bg-indigo-900 text-indigo-100 p-8 rounded-2xl italic text-lg leading-relaxed whitespace-pre-line">
-Nie złamie Oleny żadna klęska,
+                    <div class="bg-indigo-900 text-indigo-50 p-8 rounded-2xl italic text-lg whitespace-pre-line shadow-inner">
+                        Nie złamie Oleny żadna klęska,
                         nie strwoży Dymko żaden trud,
                         pójdziemy razem do Oleny,
                         gdy obejrzy cały serial.
@@ -179,33 +234,37 @@ Nie złamie Oleny żadna klęska,
                         gdy padnie rozkaz Twój,
                         poniesiem Dymko gniew!
                     </div>
-                    <audio controls class="w-full mt-4">
+                    <p class="text-lg text-slate-800 font-bold mt-8 mb-4">Melodia naszego hymnu:</p>
+                    <audio controls class="w-full">
                         <source src="files/Melodia - Olenowskie Dzieci.mp3" type="audio/mpeg">
+                        Twoja przeglądarka nie obsługuje elementu audio.
                     </audio>
                 </div>
             `,
             'kontakt': `
-                <div class="page-transition glass-card p-8 rounded-3xl">
+                <div class="page-transition glass-card p-8 md:p-12 rounded-3xl">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Kontakt</h2>
-                    <p class="text-lg"><strong>Adres:</strong> ul. Aleja Maliarenko 69/7, 22-069 Warszawa</p>
+                    <div class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-200">
+                        <p class="text-lg mb-2"><strong>Adres:</strong> ul. Aleja Maliarenko 69/7, 22-069 Warszawa</p>
+                        <p class="text-lg mb-2"><strong>Telefon:</strong> +48 22 069 69 69</p>
+                        <p class="text-lg"><strong>Email:</strong> sekretariat@sps220769.edu.pl</p>
+                    </div>
                 </div>
             `
         };
 
         function navigate() {
             const hash = window.location.hash.substring(1) || 'home';
-            document.getElementById('app').innerHTML = pages[hash] || pages['home'];
+            const content = pages[hash] || pages['home'];
+            document.getElementById('app').innerHTML = content;
+            
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === '#' + hash);
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + hash) {
+                    link.classList.add('active');
+                }
             });
-            document.getElementById('nav-menu').classList.add('hidden');
         }
-
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('nav-menu').classList.toggle('hidden');
-            document.getElementById('nav-menu').classList.toggle('flex');
-            document.getElementById('nav-menu').classList.toggle('flex-col');
-        });
 
         window.addEventListener('hashchange', navigate);
         window.addEventListener('load', navigate);
