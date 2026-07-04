@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPS nr 220769 - Warszawa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
@@ -21,7 +22,7 @@
         .page-transition { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .nav-link { transition: all 0.2s; }
+        .nav-link { transition: all 0.2s; padding: 0.5rem; }
         .nav-link:hover { color: #1e3a8a; }
         .nav-link.active { border-bottom: 2px solid #1e3a8a; color: #1e3a8a; font-weight: 600; }
     </style>
@@ -31,16 +32,16 @@
     <nav class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
             <a href="#home" class="text-xl font-bold text-blue-900 tracking-tight">SPS 220769</a>
-            <div class="flex space-x-1 sm:space-x-4 text-sm font-medium text-slate-600">
-                <a href="#home" class="nav-link p-2">Start</a>
-                <a href="#o-nas" class="nav-link p-2">O nas</a>
-                <a href="#kadra" class="nav-link p-2">Kadra</a>
-                <a href="#dla-uczniow" class="nav-link p-2">Uczniowie/Rodzice</a>
-                <a href="#kryteria" class="nav-link p-2">Kryteria Oceniania</a>
-                <a href="#palarnia" class="nav-link p-2">Palarnia</a>
-                <a href="#stolowka" class="nav-link p-2">Stołówka</a>
-                <a href="#hymn" class="nav-link p-2">Hymn</a>
-                <a href="#kontakt" class="nav-link p-2">Kontakt</a>
+            <div class="flex flex-wrap gap-2 text-sm font-medium text-slate-600">
+                <a href="#home" class="nav-link">Start</a>
+                <a href="#o-nas" class="nav-link">O nas</a>
+                <a href="#kadra" class="nav-link">Kadra</a>
+                <a href="#dla-uczniow" class="nav-link">Uczniowie/Rodzice</a>
+                <a href="#kryteria" class="nav-link">Kryteria</a>
+                <a href="#palarnia" class="nav-link">Palarnia</a>
+                <a href="#stolowka" class="nav-link">Stołówka</a>
+                <a href="#hymn" class="nav-link">Hymn</a>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
             </div>
         </div>
     </nav>
@@ -80,13 +81,13 @@
                 <div class="page-transition">
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">O nas</h2>
                     <div class="bg-white p-8 rounded-2xl border border-slate-200">
-                        <p class="text-lg text-slate-700 mb-6">Witajcie w Szkołe Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku, placówce, która dumnie dzierży tytuł najgorszej szkoły w Warszawie. Od lat konsekwentnie trzymamy się własnej, unikalnej ścieżki, w której edukacja nie odgrywa żadnej roli, a nauczanie przestało być naszą specjalnością już dawno temu. W naszych murach nie znajdziecie wsparcia, rozwoju ani nowoczesnych metod – oferujemy jedynie całkowitą stagnację i brak standardów, omijając wszelkie próby poprawy jakości kształcenia. Jeśli szukają Państwo miejsca, w którym czas stoi w miejscu, a edukacja jest jedynie pustym hasłem, trafiliście pod właściwy adres.</p>
+                        <p class="text-lg text-slate-700 mb-6">Witajcie w Szkołe Specjalnej Podstawowej nr 220769 im. Amplitudy Matematyku, placówce, która dumnie dzierży tytuł najgorszej szkoły w Warszawie. Od lat konsekwentnie trzymamy się własnej, unikalnej ścieżki, w której edukacja nie odgrywa żadnej roli, a nauczanie przestało być naszą specjalnością już dawno temu. W naszych murach nie znajdziecie wsparcia, rozwoju ani nowoczesnych metod – oferujemy jedynie całkowitą stagnację i brak standardów, omijając wszelkie próby poprawy jakości kształcenia.</p>
                     </div>
                 </div>
             `,
             'kadra': `
                 <div class="page-transition">
-                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Kadra Szkoły Podstawowej Specjalnej nr 220769 im. Amplitudy Matematyku</h2>
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Kadra Szkoły</h2>
                     <p class="text-xl mb-6 text-slate-600">Rok szkolny 2026/2027</p>
                     <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
                         <table class="w-full text-left">
@@ -111,52 +112,42 @@
                     </div>
                 </div>
             `,
-    'dla-uczniow': `
-    <div class="page-transition">
-        <h2 class="text-4xl font-bold mb-6 text-blue-900">Dla uczniów i rodziców</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="p-6 bg-white border border-slate-200 rounded-xl">
-                <h3 class="font-bold text-xl mb-3">Rekrutacja</h3>
-                <p>Informacje niedotyczące procesu rekrutacji oraz zbędne dokumenty nie znajdą Państwo w sekretariacie szkoły.</p>
-            </div>
-        </div>
-
-        <h2 class="text-4xl font-bold mt-10 mb-6 text-blue-900">Wyniki egzaminu ósmoklasisty (2026)</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="p-6 bg-white border border-slate-200 rounded-xl">
-                <h3 class="font-bold text-xl mb-3">Wyniki szkoły:</h3>
-                <ul class="space-y-2">
-                    <li><strong>Matematyka:</strong> 5%</li>
-                    <li><strong>Język polski:</strong> 8%</li>
-                    <li><strong>Język angielski:</strong> 3%</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+            'dla-uczniow': `
+                <div class="page-transition">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-900">Dla uczniów i rodziców</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-white border border-slate-200 rounded-xl">
+                            <h3 class="font-bold text-xl mb-3">Rekrutacja</h3>
+                            <p>Informacje niedotyczące procesu rekrutacji oraz zbędne dokumenty nie znajdą Państwo w sekretariacie szkoły.</p>
+                        </div>
+                    </div>
+                    <h2 class="text-4xl font-bold mt-10 mb-6 text-blue-900">Wyniki egzaminu ósmoklasisty (2026)</h2>
+                    <div class="p-6 bg-white border border-slate-200 rounded-xl">
+                        <ul class="space-y-2">
+                            <li><strong>Matematyka:</strong> 5%</li>
+                            <li><strong>Język polski:</strong> 8%</li>
+                            <li><strong>Język angielski:</strong> 3%</li>
+                        </ul>
+                    </div>
+                </div>
             `,
             'kryteria': `
                 <div class="page-transition">
                     <h2 class="text-4xl font-bold mb-6">Kryteria oceniania</h2>
-                    <p class="text-lg text-slate-600 max-w-2xl mb-8"><b>Ocena celująca (6): 96% – 100%</b>
-Uczeń opanował wiedzę i umiejętności wykraczające poza program nauczania. Samodzielnie rozwija swoje zainteresowania, rozwiązuje problemy w sposób twórczy i osiąga sukcesy w konkursach lub olimpiadach przedmiotowych.<br/>
-<b>Ocena bardzo dobra (5): 86% – 95%</b>
-Uczeń opanował pełny zakres wiedzy i umiejętności określonych w programie nauczania. Sprawnie posługuje się zdobytymi wiadomościami w sytuacjach typowych oraz rozwiązuje zadania o podwyższonym stopniu trudności.<br/>
-<b>Ocena dobra (4): 71% – 85%</b>
-Uczeń opanował materiał w stopniu dobrym. Poprawnie stosuje zdobytą wiedzę w sytuacjach typowych i standardowych. Wykazuje się samodzielnością w pracy o średnim stopniu trudności.<br/>
-<b>Ocena dostateczna (3): 51% – 70%</b>
-Uczeń opanował podstawowe treści programowe. Rozwiązuje zadania typowe, o niskim stopniu trudności, często wymagające wskazówek ze strony nauczyciela.<br/>
-<b>Ocena dopuszczająca (2): 40% – 50%</b>
-Uczeń opanował podstawy programowe w stopniu minimalnym. Posiada braki w wiedzy, ale są one na tyle niewielkie, że pozwalają na kontynuowanie nauki w zakresie danego przedmiotu.<br/>
-<b>Ocena niedostateczna (1): 0% – 39%</b>
-Uczeń nie opanował podstawowych umiejętności i treści programowych. Braki w wiedzy uniemożliwiają kontynuację nauki i zdobywanie umiejętności wyższego rzędu.</p>
+                    <div class="space-y-4">
+                        <p><b>Ocena celująca (6):</b> 96% – 100% - Uczeń opanował wiedzę i umiejętności wykraczające poza program nauczania.</p>
+                        <p><b>Ocena bardzo dobra (5):</b> 86% – 95% - Uczeń opanował pełny zakres wiedzy i umiejętności.</p>
+                        <p><b>Ocena dobra (4):</b> 71% – 85% - Uczeń opanował materiał w stopniu dobrym.</p>
+                        <p><b>Ocena dostateczna (3):</b> 51% – 70% - Uczeń opanował podstawowe treści programowe.</p>
+                        <p><b>Ocena dopuszczająca (2):</b> 40% – 50% - Uczeń opanował podstawy programowe w stopniu minimalnym.</p>
+                        <p><b>Ocena niedostateczna (1):</b> 0% – 39% - Uczeń nie opanował podstawowych umiejętności.</p>
                     </div>
                 </div>
             `,
             'palarnia': `
                 <div class="page-transition">
                     <h2 class="text-4xl font-bold mb-6">Palarnia</h2>
-                    <p class="text-lg text-slate-600 max-w-2xl mb-8">Palarnia dostępna dla uczniów i nauczycieli <br/> <b>Cena:</b> 5 zł / tydzień <br/><b>Sala:</b> 67 I Piętro <br/><b>Zarządca Palarni:</b>Mgr Maria Głucha</p>
-                    </div>
+                    <p class="text-lg text-slate-600">Palarnia dostępna dla uczniów i nauczycieli <br/> <b>Cena:</b> 5 zł / tydzień <br/><b>Sala:</b> 67 I Piętro <br/><b>Zarządca Palarni:</b> Mgr Maria Głucha</p>
                 </div>
             `,
             'stolowka': `
@@ -164,7 +155,7 @@ Uczeń nie opanował podstawowych umiejętności i treści programowych. Braki w
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Stołówka szkolna</h2>
                     <div class="bg-red-50 border border-red-200 p-8 rounded-2xl">
                         <p class="text-lg text-red-800 font-bold">Nasze obiady to jedne wielkie gówno!</p> 
-                        <p class="text-lg text-black-800 font-light">Cena za I danie (zupa): 0,1 grosz <br/> Cena za II danie (obiad): 1 złotych.</p>
+                        <p class="text-lg text-slate-800 font-light">Cena za I danie (zupa): 0,1 grosz <br/> Cena za II danie (obiad): 1 złotych.</p>
                     </div>
                 </div>
             `,
@@ -173,38 +164,7 @@ Uczeń nie opanował podstawowych umiejętności i treści programowych. Braki w
                     <h2 class="text-4xl font-bold mb-6 text-blue-900">Hymn szkoły</h2>
                     <div class="bg-indigo-50 border-l-4 border-indigo-600 p-8 rounded-r-2xl italic text-lg text-slate-800 whitespace-pre-line">
                         Nie złamie Oleny żadna klęska,
-                        nie strwoży Dymko żaden trud,
-                        pójdziemy razem do Oleny,
-                        gdy obejrzy cały serial.
-
-                        Refren:
-                        Olenowskie dzieci, pójdziemy w bój,
-                        za każdą szóstkę twą,
-                        Oleno, damy krew!
-                        Olenowskie dzieci, pójdziemy w bój,
-                        gdy padnie rozkaz Twój,
-                        poniesiem Dymko gniew!
-
-                        Odessa, Wola i Kijów,
-                        ulica każda, każdy dom –
-                        gdy padnie pierwszy strzał, Olena siada,
-                        swą wielką dupą na siedzeniu.
-
-                        Refren:
-                        Olenowskie dzieci, pójdziemy w bój,
-                        za każdy szóstkę twą,
-                        Oleno, damy krew!
-                        Olenowskie dzieci, pójdziemy w bój,
-                        gdy Anetka nie da hajsu,
-                        Olena wkurzy się!
-
-                        Refren:
-                        Olenowskie dzieci, pójdziemy w bój,
-                        za każdą szóstkę twą,
-                        Oleno, damy krew!
-                        Olenowskie dzieci, pójdziemy w bój,
-                        gdy padnie rozkaz Twój,
-                        poniesiem Dymko gniew!
+                        nie strwoży Dymko żaden trud...
                     </div>
                 </div>
             `,
