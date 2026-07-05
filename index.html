@@ -40,6 +40,27 @@
     </style>
 </head>
 <body class="text-slate-800">
+    <!-- Komunikat dla urządzeń mobilnych -->
+<div id="mobile-alert" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4">
+  <div class="bg-white p-6 rounded-2xl shadow-xl max-w-sm text-center">
+    <h2 class="text-lg font-bold mb-2">Uwaga!</h2>
+    <p class="text-gray-600 mb-4">Strona ładuje się niepoprawnie na telefonie. Zalecamy oglądanie strony na komputerze.</p>
+    <button onclick="document.getElementById('mobile-alert').classList.add('hidden')" 
+            class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition">
+      Rozumiem
+    </button>
+  </div>
+</div>
+
+<!-- Skrypt obsługujący wykrywanie telefonu -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // 768px to standardowy breakpoint dla urządzeń mobilnych
+    if (window.innerWidth < 768) {
+      document.getElementById('mobile-alert').classList.remove('hidden');
+    }
+  });
+</script>
 
     <nav class="sticky top-4 z-50 mx-4 md:mx-auto max-w-6xl glass-card rounded-full shadow-lg border border-white/60">
         <div class="px-6 py-4 flex flex-wrap justify-between items-center">
