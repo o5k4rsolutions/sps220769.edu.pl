@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILES // SPS 220769</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { 
+            font-family: 'JetBrains Mono', monospace; 
+            background: #000; 
+            color: #555;
+        }
+
+        .border-system { border: 1px solid #222; }
+        
+        .file-entry {
+            border-bottom: 1px solid #111;
+            transition: all 0.2s;
+        }
+        
+        .file-entry:hover {
+            background: #0a0a0a;
+            color: #aaa;
+        }
+
+        .sys-btn {
+            background: #050505;
+            border: 1px solid #333;
+            padding: 4px 12px;
+            font-size: 10px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .sys-btn:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        /* Giga-Glass Viewer */
+        .viewer-overlay {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid #222;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+
+    <main class="max-w-4xl mx-auto">
+        <div class="mb-12">
+            <h1 class="text-2xl text-white font-bold tracking-tighter uppercase">// SYSTEM_FILES__220769</h1>
+            <p class="text-[10px] text-gray-700 mt-1">// AKTUALIZACJA: 07.07.2026</p>
+        </div>
+
+        <div class="border-system p-1">
+            <!-- HEADERS -->
+            <div class="grid grid-cols-12 gap-4 px-4 py-2 mb-2 text-[9px] text-gray-800 border-b border-gray-900">
+                <div class="col-span-1">ID</div>
+                <div class="col-span-7">PATH/FILE_NAME</div>
+                <div class="col-span-4 text-right">COMMANDS</div>
+            </div>
+
+            <!-- FILES LIST -->
+            <div class="file-entry grid grid-cols-12 gap-4 px-4 py-4 items-center">
+                <div class="col-span-1 text-[10px] text-gray-600">001</div>
+                <div class="col-span-7 text-sm text-gray-400">Statut%20Szkoly.pdf</div>
+                <div class="col-span-4 flex justify-end gap-2">
+                    <button class="sys-btn" onclick="openViewer('https://sps220769.edu.pl/files/Statut%20Szkoly.pdf')">PODGLĄD</button>
+                    <a href="https://sps220769.edu.pl/files/Statut%20Szkoly.pdf" target="_blank" class="sys-btn">POBIERZ</a>
+                </div>
+            </div>
+
+            <div class="file-entry grid grid-cols-12 gap-4 px-4 py-4 items-center">
+                <div class="col-span-1 text-[10px] text-gray-600">002</div>
+                <div class="col-span-7 text-sm text-gray-400">Standardy_NieOchrony_Maloletnich.pdf</div>
+                <div class="col-span-4 flex justify-end gap-2">
+                    <button class="sys-btn" onclick="openViewer('https://sps220769.edu.pl/files/Standardy-NieOchrony-Maloletnich.pdf')">PODGLĄD</button>
+                    <a href="https://sps220769.edu.pl/files/Standardy-NieOchrony-Maloletnich.pdf" target="_blank" class="sys-btn">POBIERZ</a>
+                </div>
+            </div>
+
+            <div class="file-entry grid grid-cols-12 gap-4 px-4 py-4 items-center">
+                <div class="col-span-1 text-[10px] text-gray-600">003</div>
+                <div class="col-span-7 text-sm text-gray-400">Logo_Szkoly.jpg</div>
+                <div class="col-span-4 flex justify-end gap-2">
+                    <button class="sys-btn" onclick="openImage('https://sps220769.edu.pl/files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg')">PODGLĄD</button>
+                    <a href="https://sps220769.edu.pl/files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg" target="_blank" class="sys-btn">POBIERZ</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEWER SYSTEM MODAL -->
+    <div id="viewer-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="viewer-overlay w-full max-w-4xl h-[700px] flex flex-col p-2">
+            <div class="flex justify-between items-center px-4 py-2 border-b border-gray-900">
+                <span class="text-[10px] text-gray-500 uppercase">// SYSTEM_FILES__220769</span>
+                <button onclick="closeViewer()" class="text-[10px] text-gray-500 hover:text-white">CLOSE</button>
+            </div>
+            <div id="viewer-container" class="flex-grow p-2 overflow-auto">
+                <!-- CONTENT HERE -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('viewer-modal');
+        const container = document.getElementById('viewer-container');
+
+        function openViewer(url) {
+            modal.classList.remove('hidden');
+            // Zgodnie z wymaganiem:
+            container.innerHTML = `<embed src="${url}" width="100%" height="600px" type="application/pdf">`;
+        }
+
+        function openImage(url) {
+            modal.classList.remove('hidden');
+            container.innerHTML = `<div class="flex items-center justify-center h-full"><img src="${url}" style="max-height: 500px"></div>`;
+        }
+
+        function closeViewer() {
+            modal.classList.add('hidden');
+            container.innerHTML = '';
+        }
+    </script>
+</body>
+</html>
