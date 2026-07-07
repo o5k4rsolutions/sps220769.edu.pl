@@ -324,20 +324,55 @@
         </div>
 
         <h3 class="text-2xl font-bold mb-4 text-blue-900">Wyślij wiadomość do sekretariatu</h3>
-        <form id="contact-form" class="space-y-4" onsubmit="
+        
+        <!-- Dodana klasa 'animate-fade-in' dla formularza -->
+        <form id="contact-form" class="space-y-4 animate-fade-in" onsubmit="
             event.preventDefault(); 
-            this.style.display = 'none'; 
-            document.getElementById('msg-result').classList.remove('hidden');
+            
+            const form = this;
+            const resultMsg = document.getElementById('msg-result');
+            
+            // Animacja zniknięcia formularza (korzystamy z Tailwind/CSS)
+            form.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+            
+            // Po krótkiej chwili (czas trwania animacji) ukrywamy formularz i pokazujemy komunikat z animacją
+            setTimeout(() => {
+                form.style.display = 'none';
+                resultMsg.classList.remove('hidden');
+                resultMsg.classList.add('animate-slide-in-top');
+            }, 500);
+
             return false;
         ">
-            <input type="text" placeholder="Twoje imię" class="w-full p-3 rounded-xl border border-slate-300" required>
+            <input type="text" placeholder="Twoje imię i Nazwisko" class="w-full p-3 rounded-xl border border-slate-300" required>
             <textarea placeholder="Twoja wiadomość" class="w-full p-3 rounded-xl border border-slate-300 h-32" required></textarea>
-            <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-full hover:bg-blue-800 transition">Wyślij wiadomość</button>
+            <button type="submit" class="bg-blue-900 text-white px-8 py-3 rounded-full hover:bg-blue-800 transition transform hover:scale-105 duration-300">Wyślij wiadomość</button>
         </form>
+
+        <!-- Komunikat ukryty na start -->
         <div id="msg-result" class="hidden p-6 bg-red-100 text-red-900 rounded-2xl border border-red-200 font-bold text-center">
-            Wiadomość została wysłana do sekretariatu... i natychmiastowo trwale usunięta przez nasz system. Dziękujemy za stratę czasu!
+            Wiadomość została wysłana do sekretariatu... i natychmiastowo trwale usunięta przez nasz system. </br>Dziękujemy za stratę czasu!
         </div>
     </div>
+
+    <!-- Definicjekeyframes dla animacji. Wklej to do sekcji <style> w swoim głównym pliku HTML -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInTop {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in-top {
+            animation: slideInTop 0.5s ease-out forwards;
+        }
+    </style>
 `
         };
 
