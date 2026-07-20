@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkoła Podstawowa Specjalna nr 220769</title>
+    <link rel="icon" type="image/jpeg" href="files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Raleway', sans-serif; background-color: #f3f4f6; color: #374151; }
+        .font-helvetica { font-family: Helvetica, Arial, sans-serif; }
+        .hero-bg { background-size: cover; background-position: center; transition: background 1s ease-in-out; }
+        
+        .btn-sharp { 
+            border: 2px solid white; 
+            padding: 12px 30px; 
+            display: inline-block; 
+            font-weight: 700; 
+            transition: all 0.3s ease; 
+            text-transform: uppercase;
+        }
+        .btn-sharp:hover { background: white; color: #374151; }
+
+        .island-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .partner-wrapper { display: flex; justify-content: center; align-items: center; height: 200px; overflow: hidden; position: relative; }
+        .partner-card { position: absolute; transition: transform 0.8s ease-in-out; text-align: center; }
+    </style>
+</head>
+<body class="grayscale-[20%]">
+
+    <nav class="island-nav rounded-full shadow-lg border border-gray-200 px-8 py-4 flex justify-between items-center font-helvetica">
+        <div class="flex items-center gap-3">
+    <img src="files/Gemini_Generated_Image_rsqqwzrsqqwzrsqq.jpg" alt="Logo" class="w-10 h-10 object-cover rounded-full">
+    <span class="font-bold text-gray-800 uppercase tracking-tight text-xs md:text-sm">Szkoła Podstawowa Specjalna nr 220769</span>
+</div>
+        <div class="flex gap-6 font-semibold text-gray-700 text-sm">
+            <a href="#" class="hover:text-blue-600">Start</a>
+            <a href="#" class="hover:text-blue-600">Szkoła</a>
+            <a href="#" class="hover:text-blue-600">Uczniowie</a>
+        </div>
+    </nav>
+
+    <header id="hero" class="relative h-[80vh] w-full hero-bg flex items-center justify-center text-white" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1600x900/444/fff?text=Banner+1')">
+        <div id="hero-content" class="text-center p-10">
+            <h1 id="hero-title" class="text-5xl font-bold mb-6">Nie wspieramy każdego ucznia</h1>
+            <p id="hero-desc" class="text-xl mb-8 opacity-90">Jesteśmy uznawani za najgorszą szkołę w Warszawie, a nasze podejście do edukacji od lat opiera się na całkowitym braku zaangażowania w proces nauczania.</p>
+            <a href="#" class="btn-sharp">Zobacz O NAS</a>
+        </div>
+    </header>
+
+    <section class="py-24 bg-white">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">Nasi Partnerzy</h2>
+        <div id="partner-container" class="partner-wrapper"></div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-16 px-10 font-helvetica">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="font-bold text-white text-lg mb-4">Kontakt</h3>
+                <p>ul. Aleja Maliarenko 69/7</p>
+                <p>22-069 Warszawa</p>
+                <p class="mt-4">Tel: +48 22 069 69 69</p>
+                <p>Email: sekretariat@sps220769.edu.pl</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-white text-lg mb-4">Dokumenty</h3>
+                <a href="https://sps220769.edu.pl/files/Statut%20Szkoly.pdf" class="block hover:text-white underline mb-2">Statut szkoły</a>
+                <a href="https://sps220769.edu.pl/files/Standardy-NieOchrony-Maloletnich.pdf" class="block hover:text-white underline">Standardy NieOchrony Małoletnich</a>
+            </div>
+            <div>
+                <h3 class="font-bold text-white text-lg mb-4">Social Media</h3>
+                <a href="https://www.tiktok.com/@sps220769wwa" class="btn-sharp inline-block text-white">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const slides = [
+            { t: "Mamy w d.... potencjał", d: "Brak podejścia dla każdego ucznia.", img: "files/Gemini_Generated_Image_jxvq0njxvq0njxvq.png" },
+            { t: "Stare i niebezpieczne sale", d: "Wyposażenie nie dostosowane do potrzeb dzieci.", img: "files/Gemini_Generated_Image_cf7ksicf7ksicf7k.png" },
+            { t: "terrorystyczna szkoła", d: "Nasza szkoła jest oblegana przez napastników.", img: "files/167-67290.jpg" }
+        ];
+
+        let sIdx = 0;
+        const hero = document.getElementById('hero');
+        const hTitle = document.getElementById('hero-title');
+        const hDesc = document.getElementById('hero-desc');
+        
+        function updateHero() {
+            hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${slides[sIdx].img}')`;
+            hTitle.innerText = slides[sIdx].t;
+            hDesc.innerText = slides[sIdx].d;
+            sIdx = (sIdx + 1) % slides.length;
+        }
+        setInterval(updateHero, 5000);
+
+        const partners = [
+            { name: "Mazowieckie Kuratorium Oświaty", logo: "files/1_815569837_full.jpg" },
+            { name: "M.St. Warszawa", logo: "files/warsaw-logo-png_seeklogo-477874.png" },
+            { name: "Lekcjaw5minut.pl", logo: "files/Projekt bez nazwy-6.png" },
+            { name: "Hewlett Packard (HP)", logo: "files/hp-logo-black-png-large-size.png" },
+            { name: "Brother", logo: "files/Brother_BU-320CL_pas_transmisyjny__transfer_belt_oryginalny_BU320CL_051032_m1_big.jpg" }
+        ];
+        
+        const pContainer = document.getElementById('partner-container');
+        let pIdx = 0;
+
+        function animatePartners() {
+            pContainer.innerHTML = '';
+            const card = document.createElement('div');
+            card.className = 'partner-card p-6';
+            card.innerHTML = `
+                <img src="${partners[pIdx].logo}" alt="${partners[pIdx].name}" class="w-24 h-24 rounded-full mb-4 mx-auto object-cover border-2 border-gray-200">
+                <span class="font-bold text-gray-800">${partners[pIdx].name}</span>
+            `;
+            pContainer.appendChild(card);
+            
+            card.style.transform = 'translateX(100vw)';
+            setTimeout(() => card.style.transform = 'translateX(0)', 100);
+            setTimeout(() => card.style.transform = 'translateX(-100vw)', 2500);
+            
+            setTimeout(() => {
+                pIdx = (pIdx + 1) % partners.length;
+                animatePartners();
+            }, 3000);
+        }
+        animatePartners();
+    </script>
+</body>
+</html>
