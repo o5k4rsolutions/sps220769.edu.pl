@@ -2,7 +2,7 @@ name: Aktualizuj użytkowników Discorda
 
 on:
   schedule:
-    - cron: '0 * * * *' # Uruchamia się automatycznie co godzinę
+    - cron: '*/5 * * * *' # Uruchamia się automatycznie co 5 minut
   workflow_dispatch: # Pozwala uruchomić ręcznie w każdej chwili
 
 jobs:
