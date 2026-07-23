@@ -34,41 +34,34 @@
             backdrop-filter: blur(10px);
         }
 
-        .marquee-container {
-            overflow: hidden;
-            width: 100%;
-            background: #ffffff;
-            padding: 20px 0;
-            white-space: nowrap;
-            position: relative;
+        .member-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 180px; 
+            overflow: hidden; 
+            position: relative; 
         }
-        .marquee-track {
-            display: inline-flex;
-            gap: 24px;
-            animation: scroll 30s linear infinite;
-        }
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
-        .member-card {
-            display: flex;
-            align-items: center;
+        .member-card-slide { 
+            position: absolute; 
+            transition: transform 0.8s ease-in-out; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             gap: 12px;
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            padding: 10px 20px;
+            padding: 16px 32px;
             border-radius: 9999px;
             color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
-        .member-card img {
-            width: 40px;
-            height: 40px;
+        .member-card-slide img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
@@ -81,7 +74,7 @@
         </div>
         <div class="flex gap-6 font-semibold text-gray-700 text-sm">
             <a href="https://sps220769.edu.pl" class="hover:text-blue-600">Start</a>
-            <a href="https://sps220769.edu.pl/kadra.html" class="text-blue-600 font-bold">Kadra pedagogiczna</a>
+            <a href="https://sps220769.edu.pl/discord.html" class="text-blue-600 font-bold">Discord</a>
         </div>
     </nav>
 
@@ -109,13 +102,10 @@
             </a>
         </div>
 
-        <!-- Sekcja na stronie HTML -->
         <section class="py-12 bg-white rounded-2xl shadow-sm overflow-hidden">
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Ostatnio dołączyli do serwera:</h2>
-            <div class="marquee-container">
-                <div id="member-track" class="marquee-track">
-                    <!-- Tutaj JavaScript wstrzyknie dane z users.json -->
-                </div>
+            <div id="member-container" class="member-wrapper">
+                <!-- Dynamically populated by JavaScript -->
             </div>
         </section>
     </main>
@@ -142,31 +132,52 @@
     </footer>
 
     <script>
+        let membersData = [];
+        let mIdx = 0;
+        const mContainer = document.getElementById('member-container');
+
         async function loadDiscordMembers() {
-            const track = document.getElementById('member-track');
             try {
                 const response = await fetch('users.json');
-                const members = await response.json();
-
-                if (!members || members.length === 0) {
-                    track.innerHTML = '<div class="member-card">Brak nowych członków w tym miesiącu</div>';
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    mContainer.innerHTML = '<div class="text-gray-500">Brak nowych członków w tym miesiącu</div>';
                     return;
                 }
-
-                const createCard = (user) => `
-                    <div class="member-card">
-                        <img src="${user.avatar}" alt="${user.username}">
-                        <span class="font-semibold">${user.username}</span>
-                    </div>
-                `;
-
-                const htmlContent = members.map(createCard).join('');
-                track.innerHTML = htmlContent + htmlContent; // Duplikujemy, żeby pętla była płynna
-
+                
+                membersData = data;
+                animateMembers();
             } catch (error) {
                 console.error("Nie udało się pobrać listy użytkowników:", error);
-                track.innerHTML = '<div class="member-card text-red-500">Ładowanie listy...</div>';
+                mContainer.innerHTML = '<div class="text-red-500 font-semibold">Ładowanie listy...</div>';
             }
+        }
+
+        function animateMembers() {
+            if (membersData.length === 0) return;
+
+            mContainer.innerHTML = '';
+            const card = document.createElement('div');
+            card.className = 'member-card-slide';
+            card.innerHTML = `
+                <img src="${membersData[mIdx].avatar}" alt="${membersData[mIdx].username}">
+                <span class="font-bold">${membersData[mIdx].username}</span>
+            `;
+            mContainer.appendChild(card);
+            
+            // Slide in from right
+            card.style.transform = 'translateX(100vw)';
+            setTimeout(() => card.style.transform = 'translateX(0)', 100);
+            
+            // Slide out to left after 2.5s
+            setTimeout(() => card.style.transform = 'translateX(-100vw)', 2500);
+            
+            // Next member after 3s total
+            setTimeout(() => {
+                mIdx = (mIdx + 1) % membersData.length;
+                animateMembers();
+            }, 3000);
         }
 
         loadDiscordMembers();
