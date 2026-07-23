@@ -1,0 +1,32 @@
+name: Aktualizuj użytkowników Discorda
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Uruchamia się automatycznie co godzinę
+  workflow_dispatch: # Pozwala uruchomić ręcznie w każdej chwili
+
+jobs:
+  update-users:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz kod repozytorium
+        uses: actions/checkout@v4
+
+      - name: Konfiguracja Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalacja zależności
+        run: npm install discord.js
+
+      - name: Uruchomienie skryptu pobierającego dane
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: node update-users.js
+
+      - name: Automatyczny zapis zmian w repozytorium
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automatyczna aktualizacja listy użytkowników z Discorda"
+          file_pattern: users.json
