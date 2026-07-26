@@ -2,28 +2,75 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Zarządzania</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Zarządzania Rekrutacją - O5K4R Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Raleway', sans-serif; background-color: #f3f4f6; color: #374151; }
+        .font-helvetica { font-family: Helvetica, Arial, sans-serif; }
+        .island-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
-<body class="bg-slate-100 p-8">
-    <div id="loginForm" class="max-w-md mx-auto bg-white p-8 rounded shadow">
-        <h2 class="text-xl font-bold mb-4">Logowanie do Panelu</h2>
-        <input type="email" id="email" placeholder="E-mail" class="w-full p-2 border mb-2">
-        <input type="password" id="pass" placeholder="Hasło" class="w-full p-2 border mb-4">
-        <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded">Zaloguj</button>
-    </div>
+<body class="bg-gray-100 min-h-screen">
 
-    <div id="content" class="hidden max-w-6xl mx-auto">
-        <h1 class="text-2xl font-bold mb-4">Lista Zgłoszeń</h1>
-        <div id="list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-    </div>
+    <!-- -->
+    <nav class="island-nav rounded-full shadow-lg border border-gray-200 px-8 py-4 flex justify-between items-center font-helvetica">
+        <div class="flex items-center gap-3">
+            <span class="font-bold text-gray-800 uppercase tracking-tight text-sm">Panel Rekrutacyjny</span>
+        </div>
+        <div class="flex gap-6 font-semibold text-gray-700 text-sm">
+            <button onclick="logout()" class="hover:text-red-600 transition">Wyloguj</button>
+        </div>
+    </nav>
+
+    <!-- -->
+    <main class="pt-40 pb-24 px-6 max-w-6xl mx-auto">
+        
+        <!-- Formularz logowania -->
+        <div id="loginForm" class="max-w-md mx-auto bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+            <h2 class="text-2xl font-bold mb-6 text-center">Logowanie do Panelu</h2>
+            <input type="email" id="email" placeholder="E-mail" class="w-full p-3 border border-gray-200 mb-4 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="password" id="pass" placeholder="Hasło" class="w-full p-3 border border-gray-200 mb-6 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="login()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition uppercase tracking-wider text-sm">Zaloguj</button>
+        </div>
+
+        <!-- Panel z danymi -->
+        <div id="content" class="hidden">
+            <h1 class="text-3xl font-bold mb-10 text-center">Lista Zgłoszeń</h1>
+            <div id="list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </main>
+
+    <!-- -->
+    <footer class="text-center py-10 text-gray-400 font-helvetica text-sm">
+        Zasilane przez: <span class="font-bold text-gray-600">O5K4R Solutions</span>
+    </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = { /* ... wklej tutaj swój config ... */ };
+        const firebaseConfig = {
+            apiKey: "AIzaSyAR2Qw4o26EMIUmQbW8c1GRqFXT7JsMC7k",
+            authDomain: "rekrutacjaoferty.firebaseapp.com",
+            projectId: "rekrutacjaoferty",
+            storageBucket: "rekrutacjaoferty.firebasestorage.app",
+            messagingSenderId: "923562420686",
+            appId: "1:923562420686:web:a7060b47a7cd8743e9239f"
+        };
+        
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -33,19 +80,45 @@
             const p = document.getElementById('pass').value;
             try {
                 await signInWithEmailAndPassword(auth, e, p);
-            } catch (err) { alert("Błędne dane!"); }
+            } catch (err) {
+                alert("Błąd logowania: " + err.message);
+            }
+        };
+
+        window.logout = () => {
+            signOut(auth).then(() => location.reload());
         };
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 document.getElementById('loginForm').classList.add('hidden');
                 document.getElementById('content').classList.remove('hidden');
-                const querySnapshot = await getDocs(collection(db, 'applications'));
-                const list = document.getElementById('list');
-                querySnapshot.forEach((doc) => {
-                    const d = doc.data();
-                    list.innerHTML += `<div class="bg-white p-4 rounded shadow">${d.fullName} - ${d.position}<br><small>${d.email}</small></div>`;
-                });
+                
+                try {
+                    const querySnapshot = await getDocs(collection(db, 'applications'));
+                    const list = document.getElementById('list');
+                    list.innerHTML = ''; 
+                    
+                    querySnapshot.forEach((doc) => {
+                        const d = doc.data();
+                        list.innerHTML += `
+                            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-600">
+                                <h3 class="font-bold text-lg mb-2 text-gray-900">${d.fullName}</h3>
+                                <div class="space-y-1 text-sm text-gray-600">
+                                    <p><strong class="text-gray-800">Poz:</strong> ${d.position}</p>
+                                    <p><strong class="text-gray-800">Discord:</strong> ${d.discord}</p>
+                                    <p><strong class="text-gray-800">Roblox:</strong> ${d.roblox}</p>
+                                    <p class="pt-2 italic text-gray-500">"${d.motivation}"</p>
+                                    <div class="mt-4 pt-2 border-t flex justify-between text-xs font-bold text-blue-600 uppercase">
+                                        <span>Internet: ${d.internet}/10</span>
+                                        <span>Czas: ${d.time}h/dz</span>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
+                } catch (e) {
+                    alert("Brak uprawnień do odczytu danych!");
+                }
             }
         });
     </script>
