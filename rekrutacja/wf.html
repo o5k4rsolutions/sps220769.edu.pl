@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekrutacja: Nauczyciel Wychowania Fizycznego</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Raleway', Helvetica, Arial, sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen py-10 px-4 flex flex-col items-center">
+    <div class="max-w-2xl w-full bg-white p-8 rounded shadow-sm border border-slate-200">
+        <h1 class="text-2xl font-bold mb-2 tracking-tight">Rekrutacja: Nauczyciel Wychowania Fizycznego</h1>
+        <p class="text-slate-600 mb-8">Wypełnij formularz zgłoszeniowy.</p>
+
+        <form id="recruitmentForm" class="space-y-6">
+            <div>
+                <label class="block text-sm font-semibold mb-1">Imię i nazwisko</label>
+                <p class="text-xs text-slate-500 mb-2 italic">Imię musi być prawdziwe, nazwisko dowolne.</p>
+                <input type="text" id="fullName" required placeholder="np. Jan Kowalski" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Nick na Discord</label>
+                    <input type="text" id="discord" required placeholder="User#1234" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Nick na Roblox</label>
+                    <input type="text" id="roblox" required placeholder="PlayerName" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold mb-1">Dlaczego chcesz u nas uczyć?</label>
+                <textarea id="motivation" required rows="4" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Jak dobry masz internet? (1-10)</label>
+                    <input type="number" id="internet" min="1" max="10" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Jak dużo masz czasu (godz./dzień)?</label>
+                    <input type="number" id="time" min="1" max="24" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold mb-1">E-mail</label>
+                <input type="email" id="email" required placeholder="adres@email.com" class="w-full p-3 border border-slate-300 rounded focus:border-slate-500 outline-none">
+                <p class="text-xs text-slate-500 mt-2">Twój e-mail nie będzie udostępniany osobom trzecim. Służy wyłącznie do celów rekrutacji i zostanie usunięty z naszej bazy po zakończeniu procesu.</p>
+            </div>
+
+            <button type="submit" class="w-full bg-slate-900 text-white font-semibold py-3 hover:bg-slate-800 transition">
+                Wyślij zgłoszenie
+            </button>
+        </form>
+
+        <div id="statusMessage" class="mt-6 hidden text-center p-4 rounded"></div>
+    </div>
+
+    <footer class="mt-12 text-sm text-slate-400">
+        Zasilane przez: <span class="font-semibold text-slate-600">O5K4R Solutions</span>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAR2Qw4o26EMIUmQbW8c1GRqFXT7JsMC7k",
+            authDomain: "rekrutacjaoferty.firebaseapp.com",
+            projectId: "rekrutacjaoferty",
+            storageBucket: "rekrutacjaoferty.firebasestorage.app",
+            messagingSenderId: "923562420686",
+            appId: "1:923562420686:web:a7060b47a7cd8743e9239f"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        signInAnonymously(auth);
+
+        document.getElementById('recruitmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('statusMessage');
+            
+            const data = {
+                position: "Nauczyciel Wychowania Fizycznego",
+                fullName: document.getElementById('fullName').value,
+                discord: document.getElementById('discord').value,
+                roblox: document.getElementById('roblox').value,
+                motivation: document.getElementById('motivation').value,
+                internet: document.getElementById('internet').value,
+                time: document.getElementById('time').value,
+                email: document.getElementById('email').value,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                await addDoc(collection(db, 'applications'), data);
+                status.textContent = "Dziękujemy! Twoje zgłoszenie zostało przesłane.";
+                status.className = "mt-6 text-center p-4 rounded-lg bg-green-100 text-green-800 block";
+                document.getElementById('recruitmentForm').reset();
+            } catch (err) {
+                status.textContent = "Wystąpił błąd. Spróbuj ponownie.";
+                status.className = "mt-6 text-center p-4 rounded-lg bg-red-100 text-red-800 block";
+            }
+        });
+    </script>
+</body>
+</html>
